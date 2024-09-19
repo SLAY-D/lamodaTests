@@ -9,6 +9,13 @@ import java.time.Duration;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
+/* TODO:
+    1) Сделать RetryListener class
+    2) Подумать над тегами
+    3) Настроить Allure
+
+ */
+
 public class MainLM {
     private static SelenideElement
             sectionMen = $x("//a[@data-genders='men']"),
