@@ -19,6 +19,8 @@ public class FiltersLM {
             filterPriceMaxRange = $x("//input[@name='maxRange']"),
             submitFiltersBtn = $x("//button[@class='x-button x-button_primaryNewFilled x-button_48 x-button_intrinsic-width _apply_1x1qp_20']");
 
+
+    // Установка фильтра материала
     public FiltersLM selectFilterMaterials(String material){
         filterMaterials.should(Condition.appear, Duration.ofSeconds(30)).click();
         $x("//span[contains(text(), '" + material + "')]").scrollTo().click();
@@ -26,6 +28,7 @@ public class FiltersLM {
         return this;
     }
 
+    // Установка фильтра размера
     public FiltersLM selectFilterSize(String size){
         SelenideElement sizeLoc = $x("//span[@class='_valueTitle_htwrd_47 _firstLetterUppercase_htwrd_52'][contains(text(), '" + size + "')]");
         filterSize.should(Condition.appear, Duration.ofSeconds(30)).click();
@@ -34,6 +37,7 @@ public class FiltersLM {
         return this;
     }
 
+    // Установка фильтра цены
     public FiltersLM selectFilterPrice(Integer minRange, Integer maxRange){
         filterPrice.should(Condition.appear, Duration.ofSeconds(30)).click();
         filterPriceMinRange.click();
