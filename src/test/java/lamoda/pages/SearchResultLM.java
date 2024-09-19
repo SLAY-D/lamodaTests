@@ -15,10 +15,12 @@ import static com.codeborne.selenide.Selenide.$x;
 public class SearchResultLM {
     private static SelenideElement
     clearFiltersBtn = $x("//a[@class='_root_aroml_2 _link_aroml_25 _underline_aroml_49 _resetlink_srk49_24 _resetlink_srk49_24']"),
-    preloader = $x("//div[@class='preloader__mask-layer']");
+    preloader = $x("//div[@class='preloader__mask-layer']"),
+    lastPath = $x("//a[@class='router-link-active router-link-exact-active _root_aroml_2 _secondaryLabel_aroml_13']");
 
     ElementsCollection priceBold = $$x("//span[@class='_price_1rcja_8 x-product-card-description__price-single x-product-card-description__price-WEB8507_price_bold']");
     ElementsCollection priceWithDiscount = $$x("//span[@class='_price_1rcja_8 x-product-card-description__price-new x-product-card-description__price-WEB8507_price_bold']");
+    ElementsCollection path = $$x("//a[@class='_root_aroml_2 _secondaryLabel_aroml_13']");
 
 
 
@@ -46,5 +48,19 @@ public class SearchResultLM {
             priceDiscountList.add(Integer.parseInt(correctPrice));
         }
         return priceDiscountList;
+    }
+
+    public List<String> getPath(){
+        preloader.should(Condition.disappear, Duration.ofSeconds(30));
+        List<String> pathElements = new ArrayList<>();
+        for (int i = 0; i < path.size(); i++) {
+            pathElements.add(path.get(i).getText());
+            System.out.println(path.get(i).getText());
+        }
+
+        pathElements.add(lastPath.getText());
+
+
+        return pathElements;
     }
 }
